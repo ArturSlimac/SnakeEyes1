@@ -1,0 +1,11 @@
+﻿@if(Show){
+
+<div class="alert alert-danger">Oeps u did it again</div>
+<button class="btn btn-secondary" @onclick="OnRestertClicked">Restart</button>
+}
+
+@code {
+    [Parameter] public bool Show { get; set; } 
+    [Parameter] public EventCallback OnRestertClicked { get; set; }
+
+}

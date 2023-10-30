@@ -1,0 +1,32 @@
+﻿@page "/"
+@using Client.Components
+@using Domain
+<PageTitle>Snace Eyes</PageTitle>
+
+<h1>Snace Eyes</h1>
+<div>
+    <Dice Pips=@_game.Eye1 />
+    <Dice Pips=@_game.Eye2 />
+</div>
+<p>Score: @_game.Total</p>
+<button class="btn btn-primary" @onclick="@_game.Play" disabled="@_game.HasSnaceEyes">Play</button>
+<h3>Highscores</h3>
+<ul>
+    @foreach (var score in @_game.HighScores.OrderByDescending(x => x))
+    {
+        <li>@score</li>
+    }
+</ul>
+
+@if (_game.HasSnaceEyes)
+{
+    <Alert Show="true" OnRestertClicked="HandleRestart" />
+}
+@code {
+    private Game _game = new Game();
+
+    private void HandleRestart()
+    {
+        _game.Restert();
+    }
+}
